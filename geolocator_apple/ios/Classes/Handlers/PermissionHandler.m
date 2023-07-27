@@ -73,7 +73,10 @@
     [locationManager requestWhenInUseAuthorization];
   }
   else if ([self containsLocationAlwaysDescription]) {
-    [locationManager requestAlwaysAuthorization];
+    // requestAlwaysAuthorization がコンパイルされると、ITMS-90683の警告が出るため、一旦コメントアウト
+    errorHandler(GeolocatorErrorPermissionRequestInProgress,
+                     @"PermissionGroupLocationAlways is not allowed.Please remove NSLocationAlwaysUsageDescription in info.plist file.");
+//     [locationManager requestAlwaysAuthorization];
   }
 #endif
   else {
